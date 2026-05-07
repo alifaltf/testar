@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KICT AR Indoor Navigation Map</title>
+    <meta
+      name="description"
+      content="KICT indoor navigation map page with embedded Mappedin map."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="map-screen">
+      <header class="map-header">
+        <img class="header-logo" src="./kict-logo.png" alt="IIUM KICT logo" />
+        <a class="back-button" href="./index.html">Back</a>
+      </header>
+
+      <div class="map-frame">
+        <iframe
+          title="Mappedin Map"
+          name="Mappedin Map"
+          allow="clipboard-write 'self' https://app.mappedin.com; web-share 'self' https://app.mappedin.com"
+          scrolling="no"
+          width="100%"
+          height="100%"
+          frameborder="0"
+          style="border: 0"
+          src="https://app.mappedin.com/map/69544ca08dcd71000be3aa3e?embedded=true"
+        ></iframe>
+      </div>
+      <button class="ar-btn" onclick="goToAR()">Start AR Navigation</button>
+
+    </main>
+
+    
+    <script>
+      function goToAR() {
+        window.location.href = "./arbutton.html";
+      }
+    </script>
+    </main>
+  </body>
+</html>

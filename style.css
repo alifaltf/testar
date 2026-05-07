@@ -1,0 +1,138 @@
+/* 1. Base Setup */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent !important;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Target the specific AR.js video wrapper */
+.arjs-loader {
+    display: none !important;
+}
+
+/* Force the video and its parent containers to be full screen */
+video, .a-canvas, .arjs-video {
+    width: 100vw !important;
+    height: 100vh !important;
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important; /* Centers and fills */
+    object-fit: cover !important;
+    margin: 0 !important;
+}
+
+/* Ensure nothing is clipping the view */
+.a-container {
+    width: 100vw !important;
+    height: 100vh !important;
+}
+
+/* 3. UI Overlay Container */
+#ui-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999 !important;
+    pointer-events: none; /* Allows clicks to pass to AR unless on a button */
+}
+
+/* 4. Menus & Navigation */
+#floor-menu {
+    pointer-events: auto;
+    display: flex;
+    gap: 12px;
+}
+
+#destination-menu {
+    pointer-events: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #00FFFF #222;
+}
+
+/* Custom Scrollbar for Chrome/Safari */
+#destination-menu::-webkit-scrollbar {
+    width: 6px;
+}
+#destination-menu::-webkit-scrollbar-track {
+    background: #111;
+}
+#destination-menu::-webkit-scrollbar-thumb {
+    background: #00FFFF;
+    border-radius: 10px;
+}
+
+/* 5. Button Styling */
+.dest-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 8px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #00FFFF;
+    border: 2px solid #00FFFF;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.dest-btn:active {
+    background: #00FFFF;
+    color: #000;
+    transform: scale(0.95);
+}
+
+/* 6. Feedback Toast (Center Notifications) */
+#level-toast {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 20px 30px;
+    border-radius: 15px;
+    border: 1px solid #00FFFF;
+    text-align: center;
+    font-weight: bold;
+    z-index: 10001;
+    display: none; /* Controlled by JS */
+    pointer-events: none;
+    min-width: 200px;
+}
+
+#level-toast.show {
+    display: block;
+    animation: fadeInOut 3s forwards;
+}
+
+/* 7. Floating Menu Button */
+#back-to-menu-btn {
+    pointer-events: auto;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+    animation: pulse 2s infinite;
+}
+
+/* Animations */
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translate(-50%, -40%); }
+    15% { opacity: 1; transform: translate(-50%, -50%); }
+    85% { opacity: 1; transform: translate(-50%, -50%); }
+    100% { opacity: 0; transform: translate(-50%, -60%); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 255, 255, 0.7); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(0, 255, 255, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 255, 255, 0); }
+}
